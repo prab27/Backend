@@ -50,4 +50,7 @@ connectDB()
        throw err
     }
 })()
+<<<<<<< HEAD
 */
+=======
+>>>>>>> 6254287bbba0304cfd8c84f9a42148c7b0392839
