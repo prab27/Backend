@@ -6,6 +6,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 
 
+
 const generateAccessAndRefreshTokens = async(userId) =>{
     try {
         const user = await User.findById(userId)
@@ -113,9 +114,10 @@ const loginUser = asyncHandler(async(req,res) =>{
 
 
     const{email,username,password} = req.body
+    console.log(email);
 
-    if(!username || !email){
-        throw new ApiError(400,"username or password is required")
+    if(!username && !email){
+        throw new ApiError(400,"username or email is required")
     }
 
     const user = await User.findOne({
@@ -136,7 +138,7 @@ const loginUser = asyncHandler(async(req,res) =>{
     generateAccessAndRefreshTokens(user._id)
 
     const loggedInUser= await User.findById(user._id).
-    select("-password","-refreshToken")
+    select("-password -refreshToken")
 
     const options = {
         httpOnly: true,
@@ -144,7 +146,8 @@ const loginUser = asyncHandler(async(req,res) =>{
 
     }
 
-    return res.status(200)
+    return res
+    .status(200)
     .cookie("accessToken",accessToken, options )
     .cookie("refreshToken",refreshToken,options)
     .json(
@@ -191,10 +194,6 @@ const logoutUser = asyncHandler(async(req,res) => {
 
 export {
     registerUser,
-<<<<<<< HEAD
     loginUser,
     logoutUser
 }
-=======
-}
->>>>>>> 7477ae75afeec2eaa53befcb4a7ee16acf9d35f9
