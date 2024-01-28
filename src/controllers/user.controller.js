@@ -191,6 +191,10 @@ const logoutUser = asyncHandler(async(req,res) => {
 
 export {
     registerUser,
+<<<<<<< HEAD
     loginUser,
     logoutUser
 }
+=======
+}
+>>>>>>> 7477ae75afeec2eaa53befcb4a7ee16acf9d35f9
