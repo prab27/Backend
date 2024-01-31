@@ -99,7 +99,7 @@ const registerUser = asyncHandler(async(req,res) =>{
 
 
             return res.status(201).json(
-                new ApiResponse(200,createdUser,"user registered successfully")
+                new ApiResponse(200,createdUser,"use registered successfully")
             )
 
 })
